@@ -13,21 +13,26 @@
     tools:showIn="@layout/activity_main">
 
     <Button
-        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/change_text"
-        android:id="@+id/button"
+        android:text="Add"
+        android:id="@+id/addButton"
+        android:layout_above="@+id/editButton"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:id="@+id/editButton"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Front Of Flashcard"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
+        android:text="Review"
+        android:id="@+id/reviewButton"
+        android:layout_below="@+id/editButton"
         android:layout_centerHorizontal="true" />
-
 </RelativeLayout>

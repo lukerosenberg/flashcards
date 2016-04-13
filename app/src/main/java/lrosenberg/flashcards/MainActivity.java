@@ -15,21 +15,15 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
+    String front = "Front of Flashcard";
+    String back = "Back of Flashcard";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        final TextView textView = (TextView) findViewById(R.id.textView);
-        setSupportActionBar(toolbar);
-
-        final Button changeButton = (Button) findViewById(R.id.button);
-        changeButton.setOnClickListener(new View.OnClickListener(){
-          public void onClick(View v){
-              textView.setText("Back of Flashcard");
-
-          }
-        });
-
+        final Button addButton = (Button) findViewById(R.id.addButton);
+        final Button editButton = (Button) findViewById(R.id.editButton);
+        final Button reviewButton = (Button) findViewById(R.id.reviewButton);
     }
 }
