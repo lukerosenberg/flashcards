@@ -1,4 +1,4 @@
-package lrosenberg.flashcards;
+package lrosenberg.flashcards.fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import lrosenberg.flashcards.R;
 
 public class AddFragment extends Fragment {
 

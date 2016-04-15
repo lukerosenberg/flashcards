@@ -1,4 +1,4 @@
-package lrosenberg.flashcards;
+package lrosenberg.flashcards.database;
 
 
 import android.content.Context;

@@ -1,4 +1,4 @@
-package lrosenberg.flashcards;
+package lrosenberg.flashcards.database;
 
 
 public class Card {
