@@ -18,6 +18,11 @@ public class AddFragment extends Fragment {
     private EditText frontText;
     private EditText backText;
 
+    AddListener addListener;
+    public interface AddListener{
+        void loadAddScreen();
+    }
+
     public AddFragment() {
         // Required empty public constructor
     }
@@ -29,7 +34,11 @@ public class AddFragment extends Fragment {
         frontText = (EditText)view.findViewById(R.id.frontText);
         backText = (EditText)view.findViewById(R.id.backText);
         Button addCardButton = (Button)view.findViewById(R.id.addCardButton);
-
+        addCardButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                //Code for add button
+            }
+        });
         return view;
     }
 

@@ -12,14 +12,8 @@
     tools:context="lrosenberg.flashcards.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <fragment
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:name="lrosenberg.flashcards.fragments.MainMenuFragment"
-        android:id="@+id/fragment"
-        tools:layout="@layout/fragment_main_menu"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

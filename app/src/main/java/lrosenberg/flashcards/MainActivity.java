@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import lrosenberg.flashcards.fragments.MainMenuFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     String front = "Front of Flashcard";
@@ -22,8 +24,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final Button addButton = (Button) findViewById(R.id.addButton);
-        final Button editButton = (Button) findViewById(R.id.editButton);
-        final Button reviewButton = (Button) findViewById(R.id.reviewButton);
+
+        if (findViewById(R.id.fragment_container) != null) {
+            if(savedInstanceState==null){
+                return;
+            }
+            MainMenuFragment mainMenuFragment = new MainMenuFragment();
+            mainMenuFragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, mainMenuFragment).commit();
+        }
     }
 }
