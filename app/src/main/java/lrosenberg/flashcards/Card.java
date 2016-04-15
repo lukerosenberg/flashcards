@@ -36,4 +36,8 @@ public class Card {
     public void setPtime(int newPtime) {
         ptime = newPtime;
     }
+
+    public boolean isDue() {
+        return ntime <= System.currentTimeMillis()/1000L;
+    }
 }
