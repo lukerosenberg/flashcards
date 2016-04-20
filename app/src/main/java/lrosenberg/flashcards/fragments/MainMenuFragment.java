@@ -18,24 +18,37 @@ import lrosenberg.flashcards.R;
  */
 public class MainMenuFragment extends Fragment {
 
-
-    MenuListener menuListener;
-    public interface MenuListener{
-        void loadMenu();
+    public static MainMenuFragment newInstance(){
+        MainMenuFragment fragment = new MainMenuFragment();
+        return fragment;
     }
-
 
     public MainMenuFragment() {
         // Required empty public constructor
     }
 
+    /*
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
+    */
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
-        Button addButton = (Button)view.findViewById(R.id.addButton);
-        Button editButton = (Button)view.findViewById(R.id.editButton);
-        Button reviewButton = (Button)view.findViewById(R.id.reviewButton);
+        final Button addButton = (Button)view.findViewById(R.id.addButton);
+        final Button editButton = (Button)view.findViewById(R.id.editButton);
+        final Button reviewButton = (Button)view.findViewById(R.id.reviewButton);
+
+        addButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+            }
+        });
+
+
         return view;
     }
 

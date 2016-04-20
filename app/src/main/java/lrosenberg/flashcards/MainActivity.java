@@ -13,18 +13,32 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import lrosenberg.flashcards.fragments.AddFragment;
 import lrosenberg.flashcards.fragments.MainMenuFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    String front = "Front of Flashcard";
-    String back = "Back of Flashcard";
+    private MainMenuFragment mainMenuFragment;
+    private AddFragment addFragment;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mainMenuFragment = MainMenuFragment.newInstance();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, mainMenuFragment)
+                .commit();
+
+    }
+
+    /*@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
         if (findViewById(R.id.fragment_container) != null) {
             if(savedInstanceState==null){
                 return;
@@ -35,4 +49,5 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, mainMenuFragment).commit();
         }
     }
+    */
 }
