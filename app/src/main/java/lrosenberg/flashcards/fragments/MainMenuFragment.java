@@ -4,6 +4,7 @@ package lrosenberg.flashcards.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,24 +18,45 @@ import lrosenberg.flashcards.R;
  */
 public class MainMenuFragment extends Fragment {
 
+    private AddFragment addFragment;
 
-    MenuListener activityCommander;
-    public interface MenuListener{
-        void loadMenu();
+    public static MainMenuFragment newInstance(){
+        MainMenuFragment fragment = new MainMenuFragment();
+        return fragment;
     }
-
 
     public MainMenuFragment() {
         // Required empty public constructor
     }
 
+    /*
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
+    */
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
-        Button addButton = (Button)view.findViewById(R.id.addButton);
-        Button editButton = (Button)view.findViewById(R.id.editButton);
-        Button reviewButton = (Button)view.findViewById(R.id.reviewButton);
+        final Button addButton = (Button)view.findViewById(R.id.addButton);
+        final Button editButton = (Button)view.findViewById(R.id.editButton);
+        final Button reviewButton = (Button)view.findViewById(R.id.reviewButton);
+
+        addFragment = AddFragment.newInstance();
+
+        addButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, addFragment);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
+
         return view;
     }
 

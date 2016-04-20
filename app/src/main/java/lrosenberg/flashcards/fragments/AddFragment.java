@@ -14,9 +14,13 @@ import lrosenberg.flashcards.R;
 
 public class AddFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
     private EditText frontText;
     private EditText backText;
+
+    public static AddFragment newInstance(){
+        AddFragment fragment = new AddFragment();
+        return fragment;
+    }
 
     public AddFragment() {
         // Required empty public constructor
@@ -29,36 +33,22 @@ public class AddFragment extends Fragment {
         frontText = (EditText)view.findViewById(R.id.frontText);
         backText = (EditText)view.findViewById(R.id.backText);
         Button addCardButton = (Button)view.findViewById(R.id.addCardButton);
-
+        addCardButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                //Code for add button
+            }
+        });
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }
