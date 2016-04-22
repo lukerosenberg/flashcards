@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.sql.SQLException;
+
 import lrosenberg.flashcards.database.CardDB;
 import lrosenberg.flashcards.fragments.AddFragment;
 import lrosenberg.flashcards.fragments.MainMenuFragment;
@@ -21,17 +23,21 @@ public class MainActivity extends AppCompatActivity {
 
     private MainMenuFragment mainMenuFragment;
     private AddFragment addFragment;
-    private CardDB db = new CardDB(this);
+    public CardDB db = new CardDB(this);
 
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try {
+            db.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         mainMenuFragment = MainMenuFragment.newInstance();
         addFragment = AddFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, mainMenuFragment)
                 .commit();
-
     }
 }

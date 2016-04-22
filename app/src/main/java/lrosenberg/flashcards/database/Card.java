@@ -5,6 +5,13 @@ public class Card {
     private String front, back;
     private int ntime, ptime;
 
+    public Card(String f, String b, int n, int p) {
+        front = f;
+        back = b;
+        ntime = n;
+        ptime = p;
+    }
+
     public String getFront() {
         return front;
     }
