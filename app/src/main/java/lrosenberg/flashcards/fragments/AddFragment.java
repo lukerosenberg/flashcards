@@ -35,7 +35,7 @@ public class AddFragment extends Fragment {
         Button addCardButton = (Button)view.findViewById(R.id.addCardButton);
         addCardButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                //Code for add button
+
             }
         });
         return view;
