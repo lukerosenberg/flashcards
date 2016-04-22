@@ -19,6 +19,7 @@ import lrosenberg.flashcards.R;
 public class MainMenuFragment extends Fragment {
 
     private AddFragment addFragment;
+    private EditFragment editFragment;
 
     public static MainMenuFragment newInstance(){
         MainMenuFragment fragment = new MainMenuFragment();
@@ -46,6 +47,7 @@ public class MainMenuFragment extends Fragment {
         final Button reviewButton = (Button)view.findViewById(R.id.reviewButton);
 
         addFragment = AddFragment.newInstance();
+        editFragment = EditFragment.newInstance();
 
         addButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -56,6 +58,14 @@ public class MainMenuFragment extends Fragment {
             }
         });
 
+        editButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, editFragment);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
 
         return view;
     }
