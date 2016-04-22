@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import lrosenberg.flashcards.database.CardDB;
 import lrosenberg.flashcards.fragments.AddFragment;
 import lrosenberg.flashcards.fragments.MainMenuFragment;
 
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private MainMenuFragment mainMenuFragment;
     private AddFragment addFragment;
-
+    private CardDB db = new CardDB(this);
 
     @Override
     protected  void onCreate(Bundle savedInstanceState) {
