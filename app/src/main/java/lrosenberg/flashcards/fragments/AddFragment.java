@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import lrosenberg.flashcards.MainActivity;
 import lrosenberg.flashcards.R;
@@ -37,6 +41,7 @@ public class AddFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add, container, false);
         frontText = (EditText)view.findViewById(R.id.frontText);
         backText = (EditText)view.findViewById(R.id.backText);
+
         Button addCardButton = (Button)view.findViewById(R.id.addCardButton);
         addCardButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -46,6 +51,8 @@ public class AddFragment extends Fragment {
                                                       (int)(System.currentTimeMillis()/1000)));
                 frontText.setText("");
                 backText.setText("");
+
+                Toast.makeText(getActivity(),"Card Added to Database",Toast.LENGTH_SHORT).show();
             }
         });
         return view;
