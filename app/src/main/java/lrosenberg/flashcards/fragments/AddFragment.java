@@ -27,6 +27,8 @@ public class AddFragment extends Fragment {
 
     public static AddFragment newInstance(){
         AddFragment fragment = new AddFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
         return fragment;
     }
 

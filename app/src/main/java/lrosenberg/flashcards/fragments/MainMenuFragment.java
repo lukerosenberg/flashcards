@@ -20,6 +20,7 @@ public class MainMenuFragment extends Fragment {
 
     private AddFragment addFragment;
     private EditFragment editFragment;
+    private ReviewFragment reviewFragment;
 
     public static MainMenuFragment newInstance(){
         MainMenuFragment fragment = new MainMenuFragment();
@@ -48,6 +49,8 @@ public class MainMenuFragment extends Fragment {
 
         addFragment = AddFragment.newInstance();
         editFragment = EditFragment.newInstance();
+        reviewFragment = ReviewFragment.newInstance();
+
 
         addButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -66,6 +69,17 @@ public class MainMenuFragment extends Fragment {
                 ft.commit();
             }
         });
+
+        reviewButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, reviewFragment);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
+
 
         return view;
     }
