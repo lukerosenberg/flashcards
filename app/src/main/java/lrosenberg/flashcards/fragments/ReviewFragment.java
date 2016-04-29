@@ -52,10 +52,10 @@ public class ReviewFragment extends Fragment {
         final Card testCard;
 
         testCard = main_activity.db.getRandomCard();
-        cardText.setText(testCard.getFront()); //Replace with call to function to get card front
+        cardText.setText(testCard.getFront());
         flashcardImage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                cardText.setText(testCard.getBack()); //Replace with code to show back of text
+                cardText.setText(testCard.getBack());
                 correctButton.setVisibility(View.VISIBLE);
                 incorrectButton.setVisibility(View.VISIBLE);
             }
