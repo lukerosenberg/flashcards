@@ -2,6 +2,7 @@ package lrosenberg.flashcards.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.sql.SQLException;
@@ -35,5 +36,16 @@ public class CardDB {
 
     public void deleteCard(int id) {
         db.delete(dbHelper.cardTableName, dbHelper.columnID + " = " + id, null);
+    }
+
+    public Card getRandomCard() {
+        String[] getCols = new String[] {dbHelper.columnFront, dbHelper.columnBack};
+
+        Cursor cursor = db.query(dbHelper.cardTableName, getCols, null, null, null, null, "RANDOM()");
+        cursor.moveToFirst();
+
+        Card c = new Card(cursor.getString(cursor.getColumnIndex(dbHelper.columnFront)), cursor.getString(cursor.getColumnIndex(dbHelper.columnBack)), 0, 0);
+        //Card c = new Card(cursor.getString(1), cursor.getString(2), 0, 0);
+        return c;
     }
 }
