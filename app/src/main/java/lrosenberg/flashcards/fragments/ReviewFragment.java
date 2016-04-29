@@ -1,6 +1,7 @@
 package lrosenberg.flashcards.fragments;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,7 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import lrosenberg.flashcards.MainActivity;
 import lrosenberg.flashcards.R;
+import lrosenberg.flashcards.database.Card;
 
 public class ReviewFragment extends Fragment {
 
@@ -18,6 +21,9 @@ public class ReviewFragment extends Fragment {
     private Button correctButton;
     private Button incorrectButton;
     private TextView cardText;
+
+    public MainActivity main_activity;
+
 
     public ReviewFragment() {
     }
@@ -33,7 +39,7 @@ public class ReviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        main_activity = (MainActivity)getActivity();
         View view = inflater.inflate(R.layout.fragment_review, container, false);
         correctButton = (Button) view.findViewById(R.id.correctButton);
         incorrectButton = (Button) view.findViewById(R.id.incorrectButton);
@@ -43,10 +49,13 @@ public class ReviewFragment extends Fragment {
         correctButton.setVisibility(View.INVISIBLE);
         incorrectButton.setVisibility(View.INVISIBLE);
 
-        cardText.setText("Front of Flashcard"); //Replace with call to function to get card front
+        final Card testCard;
+
+        testCard = main_activity.db.getRandomCard();
+        cardText.setText(testCard.getFront()); //Replace with call to function to get card front
         flashcardImage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                cardText.setText("Back of Flashcard"); //Replace with code to show back of text
+                cardText.setText(testCard.getBack()); //Replace with code to show back of text
                 correctButton.setVisibility(View.VISIBLE);
                 incorrectButton.setVisibility(View.VISIBLE);
             }
