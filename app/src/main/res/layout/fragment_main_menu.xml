@@ -1,8 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MainMenuFragment">
+    tools:context=".fragments.MainMenuFragment"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
     <Button
         android:layout_width="wrap_content"
@@ -27,4 +30,6 @@
         android:id="@+id/reviewButton"
         android:layout_below="@+id/editButton"
         android:layout_centerHorizontal="true" />
+
+
 </RelativeLayout>
