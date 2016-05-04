@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class ReviewFragment extends Fragment {
     private Button correctButton;
     private Button incorrectButton;
     private TextView cardText;
+    private ReviewFragment reviewFragment;
 
     public MainActivity main_activity;
 
@@ -53,6 +55,7 @@ public class ReviewFragment extends Fragment {
 
         testCard = main_activity.db.getRandomCard();
         cardText.setText(testCard.getFront());
+
         flashcardImage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 cardText.setText(testCard.getBack());
@@ -60,6 +63,25 @@ public class ReviewFragment extends Fragment {
                 incorrectButton.setVisibility(View.VISIBLE);
             }
         });
+
+        reviewFragment = reviewFragment.newInstance();
+
+        correctButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, reviewFragment);
+                ft.commit();
+            }
+        });
+
+        incorrectButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, reviewFragment);
+                ft.commit();
+            }
+        });
+
         return view;
     }
 
