@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity
     private MainMenuFragment mainMenuFragment;
     private AddFragment addFragment;
     public CardDB db = new CardDB(this);
-    private CardDB db = new CardDB(this);
     private ImageView bigflash;
     //ABOVE HERE
 
