@@ -56,7 +56,7 @@ public class ReviewFragment extends Fragment {
 
         correctButton.setVisibility(View.INVISIBLE);
         incorrectButton.setVisibility(View.INVISIBLE);
-        deleteButton.setVisibility(View.INVISIBLE);
+        //deleteButton.setVisibility(View.VISIBLE);
 
         final Card testCard;
 
@@ -68,7 +68,7 @@ public class ReviewFragment extends Fragment {
                 cardText.setText(testCard.getBack());
                 correctButton.setVisibility(View.VISIBLE);
                 incorrectButton.setVisibility(View.VISIBLE);
-                deleteButton.setVisibility(View.VISIBLE);
+                //deleteButton.setVisibility(View.VISIBLE);
             }
         });
 
