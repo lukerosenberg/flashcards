@@ -39,6 +39,7 @@ public class AddFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         main_activity = (MainActivity)getActivity();
         View view = inflater.inflate(R.layout.fragment_add, container, false);
         frontText = (EditText)view.findViewById(R.id.frontText);
