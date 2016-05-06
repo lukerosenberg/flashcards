@@ -34,8 +34,9 @@ public class CardDB {
         db.insert(dbHelper.cardTableName, null, vals);
     }
 
-    public void deleteCard(int id) {
-        db.delete(dbHelper.cardTableName, dbHelper.columnID + " = " + id, null);
+    public void deleteCard(String front) {
+
+        db.delete(dbHelper.cardTableName, dbHelper.columnFront + " = " + front, null);
     }
 
     public Card getRandomCard() {

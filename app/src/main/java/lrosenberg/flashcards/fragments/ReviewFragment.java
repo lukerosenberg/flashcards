@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import lrosenberg.flashcards.database.CardDB;
 
 import lrosenberg.flashcards.MainActivity;
 import lrosenberg.flashcards.R;
@@ -55,6 +56,7 @@ public class ReviewFragment extends Fragment {
 
         correctButton.setVisibility(View.INVISIBLE);
         incorrectButton.setVisibility(View.INVISIBLE);
+        deleteButton.setVisibility(View.INVISIBLE);
 
         final Card testCard;
 
@@ -66,6 +68,7 @@ public class ReviewFragment extends Fragment {
                 cardText.setText(testCard.getBack());
                 correctButton.setVisibility(View.VISIBLE);
                 incorrectButton.setVisibility(View.VISIBLE);
+                deleteButton.setVisibility(View.VISIBLE);
             }
         });
 
@@ -100,7 +103,8 @@ public class ReviewFragment extends Fragment {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //Code to delete flashcard from database
-                                dialog.cancel();
+                                main_activity.db.deleteCard(testCard.getFront());
+                                //dialog.cancel();
                             }
                         });
 
