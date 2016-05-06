@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity
 
     private MainMenuFragment mainMenuFragment;
     private ReviewFragment reviewFragment;
+    private EditFragment editFragment;
+    private AddFragment addFragment;
     public CardDB db = new CardDB(this);
     private ImageView bigflash;
     //ABOVE HERE
@@ -121,15 +123,16 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction ft = fragmentManager.beginTransaction();
 
         if (id == R.id.nav_first_layout) {
-            // Handle the camera action
+            addFragment = AddFragment.newInstance();
+            ft.replace(R.id.fragment_container, addFragment)
+                    .commit();
         } else if (id == R.id.nav_second_layout) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame, new EditFragment())
+            editFragment = EditFragment.newInstance();
+            ft.replace(R.id.fragment_container, editFragment)
                     .commit();
         } else if (id == R.id.nav_third_layout) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame, new ReviewFragment())
-                    .commit();
+            reviewFragment = ReviewFragment.newInstance();
+            ft.replace(R.id.fragment_container, reviewFragment);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

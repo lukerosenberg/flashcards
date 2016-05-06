@@ -102,9 +102,10 @@ public class ReviewFragment extends Fragment {
                         "Delete",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                //Code to delete flashcard from database
-                                main_activity.db.deleteCard(testCard.getFront());
-                                //dialog.cancel();
+                                final FragmentTransaction ft = getFragmentManager()
+                                    .beginTransaction();
+                                ft.replace(R.id.fragment_container, reviewFragment)
+                                    .commit();
                             }
                         });
 
