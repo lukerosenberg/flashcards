@@ -3,6 +3,7 @@ package lrosenberg.flashcards.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,8 @@ public class AddFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add, container, false);
         frontText = (EditText)view.findViewById(R.id.frontText);
         backText = (EditText)view.findViewById(R.id.backText);
+        //FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        //fab.hide();
 
         Button addCardButton = (Button)view.findViewById(R.id.addCardButton);
         addCardButton.setOnClickListener(new View.OnClickListener(){

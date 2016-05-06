@@ -91,11 +91,11 @@ public class ReviewFragment extends Fragment {
 
         deleteButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
-                builder1.setMessage("Are you sure you want to delete this flashcard?");
-                builder1.setCancelable(true);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Are you sure you want to delete this flashcard?");
+                builder.setCancelable(true);
 
-                builder1.setPositiveButton(
+                builder.setPositiveButton(
                         "Delete",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -104,7 +104,7 @@ public class ReviewFragment extends Fragment {
                             }
                         });
 
-                builder1.setNegativeButton(
+                builder.setNegativeButton(
                         "Cancel",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -112,7 +112,7 @@ public class ReviewFragment extends Fragment {
                             }
                         });
 
-                AlertDialog alert11 = builder1.create();
+                AlertDialog alert11 = builder.create();
                 alert11.show();
             }
         });
