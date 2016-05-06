@@ -17,7 +17,7 @@ public class TextAdapter extends BaseAdapter{
     }
 
     public int getCount() {
-        return 9;
+        return texts.length;
     }
 
     public Object getItem(int position) {

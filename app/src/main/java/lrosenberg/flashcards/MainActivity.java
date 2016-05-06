@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,14 +24,16 @@ import java.sql.SQLException;
 
 import lrosenberg.flashcards.database.CardDB;
 import lrosenberg.flashcards.fragments.AddFragment;
+import lrosenberg.flashcards.fragments.EditFragment;
 import lrosenberg.flashcards.fragments.MainMenuFragment;
+import lrosenberg.flashcards.fragments.ReviewFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
     private MainMenuFragment mainMenuFragment;
-    private AddFragment addFragment;
+    private ReviewFragment reviewFragment;
     public CardDB db = new CardDB(this);
     private ImageView bigflash;
     //ABOVE HERE
@@ -44,9 +48,9 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
         mainMenuFragment = MainMenuFragment.newInstance();
-        addFragment = AddFragment.newInstance();
+        reviewFragment = ReviewFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, mainMenuFragment)
+                .replace(R.id.fragment_container, reviewFragment)
                 .commit();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -56,8 +60,12 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AddFragment addFragment = AddFragment.newInstance();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.fragment_container, addFragment);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
@@ -107,27 +115,21 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
-        android.app.FragmentManager fragmentManager = getFragmentManager();
+        int id = item.getItemId();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
 
         if (id == R.id.nav_first_layout) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame, new FirstFragment())
-                    .commit();
             // Handle the camera action
         } else if (id == R.id.nav_second_layout) {
             fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame, new SecondFragment())
+                    .replace(R.id.content_frame, new EditFragment())
                     .commit();
         } else if (id == R.id.nav_third_layout) {
             fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame, new ThirdFragment())
+                    .replace(R.id.content_frame, new ReviewFragment())
                     .commit();
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
