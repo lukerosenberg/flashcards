@@ -36,7 +36,8 @@ public class CardDB {
 
     public void deleteCard(String front) {
 
-        db.delete(dbHelper.cardTableName, dbHelper.columnFront + " = " + front, null);
+        db.execSQL("Delete from " + dbHelper.cardTableName + " where " + dbHelper.columnFront + " = \"" + front + "\";");
+        //db.delete(dbHelper.cardTableName, dbHelper.columnFront + " = " + front, null);
     }
 
     public Card getRandomCard() {
