@@ -9,8 +9,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="HELP STUFF"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="To create a new flashcard, press the pink plus sign at the bottom right of the screen.\n\nTo see the back side of a flashcard, tap the flashcard.\n\nTo move onto the next flashcard, press the correct button if you got the term correct or the incorrect button if you got the term incorrect.\n\nThe correct and incorrect buttons keep track of the terms you got correct or incorrect. To reset this count, press the three vertical dots at the top right of the screen then press Reset Count.\n\nTo get out of this help screen, press the back button on your device."
         android:id="@+id/helpText"
         android:layout_gravity="center_horizontal|top" />
 </FrameLayout>

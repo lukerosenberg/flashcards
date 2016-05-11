@@ -121,6 +121,16 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
 
+        if (id == R.id.reset_count) {
+            numCorrect = 0;
+            numIncorrect = 0;
+            final FragmentManager fm = getSupportFragmentManager();
+            final FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.fragment_container, reviewFragment)
+                    .addToBackStack(null).commit();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
