@@ -20,6 +20,14 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import org.w3c.dom.Text;
 
@@ -43,6 +51,7 @@ public class MainActivity extends AppCompatActivity
     public int numCorrect;
     public int numIncorrect;
     private ImageView bigflash;
+
     //ABOVE HERE
 
     @Override
@@ -120,31 +129,30 @@ public class MainActivity extends AppCompatActivity
                 .addToBackStack(null).commit();
             return true;
         }
-
+        else if (id == R.id.reset){
+            numCorrect = 0;
+            numIncorrect = 0;
+            //reviewFragment = ReviewFragment.newInstance();
+            final FragmentManager fm = getSupportFragmentManager();
+            final FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.fragment_container, reviewFragment)
+                    .commit();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-
         int id = item.getItemId();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
 
         if (id == R.id.nav_first_layout) {
-            addFragment = AddFragment.newInstance();
-            ft.replace(R.id.fragment_container, addFragment)
-                    .commit();
+            Toast.makeText(this,"Test",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_second_layout) {
-            editFragment = EditFragment.newInstance();
-            ft.replace(R.id.fragment_container, editFragment)
-                    .commit();
+
         } else if (id == R.id.nav_third_layout) {
-            reviewFragment = ReviewFragment.newInstance();
-            ft.replace(R.id.fragment_container, reviewFragment)
-                    .commit();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
