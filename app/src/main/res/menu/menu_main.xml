@@ -7,4 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/help"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/reset"
+        android:orderInCategory="100"
+        android:title="Reset Score"
+        app:showAsAction="never" />
+
 </menu>
