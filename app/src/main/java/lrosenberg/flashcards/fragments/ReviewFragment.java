@@ -1,9 +1,12 @@
 package lrosenberg.flashcards.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -28,7 +31,6 @@ public class ReviewFragment extends Fragment {
     private Button incorrectButton;
     private TextView cardText;
     private ReviewFragment reviewFragment;
-
     public MainActivity main_activity;
 
 
@@ -49,7 +51,9 @@ public class ReviewFragment extends Fragment {
         main_activity = (MainActivity)getActivity();
         View view = inflater.inflate(R.layout.fragment_review, container, false);
         correctButton = (Button) view.findViewById(R.id.correctButton);
+        correctButton.setText("Correct: " +main_activity.numCorrect);
         incorrectButton = (Button) view.findViewById(R.id.incorrectButton);
+        incorrectButton.setText("Incorrect: " +main_activity.numIncorrect);
         cardText = (TextView) view.findViewById(R.id.textView);
         flashcardImage = (ImageView) view.findViewById(R.id.flashcard);
         deleteButton = (ImageButton)view.findViewById(R.id.deleteButton);
@@ -61,6 +65,7 @@ public class ReviewFragment extends Fragment {
         final Card testCard;
 
         testCard = main_activity.db.getRandomCard();
+
         cardText.setText(testCard.getFront());
 
         flashcardImage.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +85,7 @@ public class ReviewFragment extends Fragment {
                 ft.replace(R.id.fragment_container, reviewFragment);
                 //ft.addToBackStack(null);
                 ft.commit();
+                main_activity.numCorrect++;
             }
         });
 
@@ -89,6 +95,7 @@ public class ReviewFragment extends Fragment {
                 ft.replace(R.id.fragment_container, reviewFragment);
                 //ft.addToBackStack(null);
                 ft.commit();
+                main_activity.numIncorrect++;
             }
         });
 
@@ -102,6 +109,7 @@ public class ReviewFragment extends Fragment {
                         "Delete",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                main_activity.db.deleteCard(testCard.getFront());
                                 final FragmentTransaction ft = getFragmentManager()
                                     .beginTransaction();
                                 ft.replace(R.id.fragment_container, reviewFragment)

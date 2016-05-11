@@ -1,5 +1,7 @@
 package lrosenberg.flashcards;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -9,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -32,11 +35,13 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    private MainMenuFragment mainMenuFragment;
     private ReviewFragment reviewFragment;
     private EditFragment editFragment;
     private AddFragment addFragment;
+    private HelpFragment helpFragment;
     public CardDB db = new CardDB(this);
+    public int numCorrect;
+    public int numIncorrect;
     private ImageView bigflash;
     //ABOVE HERE
 
@@ -49,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        mainMenuFragment = MainMenuFragment.newInstance();
+
         reviewFragment = ReviewFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, reviewFragment)
@@ -58,7 +63,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +113,11 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            helpFragment = HelpFragment.newInstance();
+            final FragmentManager fm = getSupportFragmentManager();
+            final FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.fragment_container, helpFragment)
+                .addToBackStack(null).commit();
             return true;
         }
 
@@ -132,7 +143,8 @@ public class MainActivity extends AppCompatActivity
                     .commit();
         } else if (id == R.id.nav_third_layout) {
             reviewFragment = ReviewFragment.newInstance();
-            ft.replace(R.id.fragment_container, reviewFragment);
+            ft.replace(R.id.fragment_container, reviewFragment)
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

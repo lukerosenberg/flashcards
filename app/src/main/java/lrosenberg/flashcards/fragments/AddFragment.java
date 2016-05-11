@@ -45,8 +45,6 @@ public class AddFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add, container, false);
         frontText = (EditText)view.findViewById(R.id.frontText);
         backText = (EditText)view.findViewById(R.id.backText);
-        //FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        //fab.hide();
 
         Button addCardButton = (Button)view.findViewById(R.id.addCardButton);
         addCardButton.setOnClickListener(new View.OnClickListener(){
