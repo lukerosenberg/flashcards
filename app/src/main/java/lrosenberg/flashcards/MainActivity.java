@@ -94,22 +94,44 @@ public class MainActivity extends AppCompatActivity
         */
 
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName("View All Flashcards");
+        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName("Review");
+        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName("Add New Flashcard");
 
         Drawer drawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .addDrawerItems(
                         item1,
+                        item2,
+                        item3,
                         new DividerDrawerItem()
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
-                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        editFragment = EditFragment.newInstance();
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem)
+                    {
                         FragmentManager fm = getSupportFragmentManager();
                         FragmentTransaction ft = fm.beginTransaction();
-                        ft.replace(R.id.fragment_container, editFragment)
-                                .addToBackStack(null).commit();
+                        if (position == 0)
+                        {
+                            editFragment = EditFragment.newInstance();
+                            ft.replace(R.id.fragment_container, editFragment)
+                                   .addToBackStack(null).commit();
+
+                            }
+                        if (position == 1)
+                        {
+                            reviewFragment = reviewFragment.newInstance();
+                            ft.replace(R.id.fragment_container,reviewFragment)
+                                    .addToBackStack(null).commit();
+
+                        }
+                        if(position == 2)
+                        {
+                            addFragment = addFragment.newInstance();
+                            ft.replace(R.id.fragment_container, addFragment)
+                                    .addToBackStack(null).commit();
+                        }
                         return true;
                     }
                 })
