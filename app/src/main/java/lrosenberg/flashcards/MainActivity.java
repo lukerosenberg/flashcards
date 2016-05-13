@@ -130,21 +130,21 @@ public class MainActivity extends AppCompatActivity
                     {
                         FragmentManager fm = getSupportFragmentManager();
                         FragmentTransaction ft = fm.beginTransaction();
-                        if (position == 0)
+                        if (position == 1)
                         {
                             editFragment = EditFragment.newInstance();
                             ft.replace(R.id.fragment_container, editFragment)
                                    .addToBackStack(null).commit();
 
                             }
-                        if (position == 1)
+                        if (position == 2)
                         {
                             reviewFragment = reviewFragment.newInstance();
                             ft.replace(R.id.fragment_container,reviewFragment)
                                     .addToBackStack(null).commit();
 
                         }
-                        if(position == 2)
+                        if(position == 3)
                         {
                             addFragment = addFragment.newInstance();
                             ft.replace(R.id.fragment_container, addFragment)
