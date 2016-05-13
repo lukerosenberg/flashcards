@@ -66,69 +66,85 @@ public class ReviewFragment extends Fragment {
 
         testCard = main_activity.db.getRandomCard();
 
-        cardText.setText(testCard.getFront());
 
-        flashcardImage.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-                cardText.setText(testCard.getBack());
-                correctButton.setVisibility(View.VISIBLE);
-                incorrectButton.setVisibility(View.VISIBLE);
-                //deleteButton.setVisibility(View.VISIBLE);
-            }
-        });
+        if (testCard == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("No cards added yet. Click to add some.");
+            builder.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            final AddFragment addFragment = new AddFragment();
+                            ft.replace(R.id.fragment_container, addFragment).commit();
+                        }
+                    }
+            );
+        }
+        else{
+            cardText.setText(testCard.getFront());
+            flashcardImage.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v){
+                    cardText.setText(testCard.getBack());
+                    correctButton.setVisibility(View.VISIBLE);
+                    incorrectButton.setVisibility(View.VISIBLE);
+                    //deleteButton.setVisibility(View.VISIBLE);
+                }
+            });
 
-        reviewFragment = reviewFragment.newInstance();
+            reviewFragment = reviewFragment.newInstance();
 
-        correctButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container, reviewFragment);
-                //ft.addToBackStack(null);
-                ft.commit();
-                main_activity.numCorrect++;
-            }
-        });
+            correctButton.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v){
+                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.fragment_container, reviewFragment);
+                    //ft.addToBackStack(null);
+                    ft.commit();
+                    main_activity.numCorrect++;
+                }
+            });
 
-        incorrectButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container, reviewFragment);
-                //ft.addToBackStack(null);
-                ft.commit();
-                main_activity.numIncorrect++;
-            }
-        });
+            incorrectButton.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v){
+                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.fragment_container, reviewFragment);
+                    //ft.addToBackStack(null);
+                    ft.commit();
+                    main_activity.numIncorrect++;
+                }
+            });
 
-        deleteButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("Are you sure you want to delete this flashcard?");
-                builder.setCancelable(true);
+            deleteButton.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("Are you sure you want to delete this flashcard?");
+                    builder.setCancelable(true);
 
-                builder.setPositiveButton(
-                        "Delete",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                main_activity.db.deleteCard(testCard.getFront());
-                                final FragmentTransaction ft = getFragmentManager()
-                                    .beginTransaction();
-                                ft.replace(R.id.fragment_container, reviewFragment)
-                                    .commit();
-                            }
-                        });
+                    builder.setPositiveButton(
+                            "Delete",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    main_activity.db.deleteCard(testCard.getFront());
+                                    final FragmentTransaction ft = getFragmentManager()
+                                            .beginTransaction();
+                                    ft.replace(R.id.fragment_container, reviewFragment)
+                                            .commit();
+                                }
+                            });
 
-                builder.setNegativeButton(
-                        "Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
+                    builder.setNegativeButton(
+                            "Cancel",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
 
-                AlertDialog alert11 = builder.create();
-                alert11.show();
-            }
-        });
+                    AlertDialog alert11 = builder.create();
+                    alert11.show();
+                }
+            });
+        }
+
         return view;
     }
 
