@@ -23,11 +23,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import java.sql.SQLException;
 
@@ -95,7 +99,23 @@ public class MainActivity extends AppCompatActivity
         PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName("Review");
         PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName("Add New Flashcard");
 
+        AccountHeader headerResult = new AccountHeaderBuilder()
+                .withActivity(this)
+                .withHeaderBackground(R.drawable.bigflash)
+                .addProfiles(
+                        //new ProfileDrawerItem().withName("Mike Penz").withEmail("mikepenz@gmail.com").withIcon(getResources().getDrawable(R.drawable.profile))
+                )
+                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
+                    @Override
+                    public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
+                        return false;
+                    }
+                })
+                .build();
+
+
         Drawer drawer = new DrawerBuilder()
+                .withAccountHeader(headerResult)
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .addDrawerItems(
