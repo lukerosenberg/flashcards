@@ -44,7 +44,8 @@ public class CardDB {
         String[] getCols = new String[] {dbHelper.columnFront, dbHelper.columnBack};
 
         Cursor cursor = db.query(dbHelper.cardTableName, getCols, null, null, null, null, "RANDOM()");
-        cursor.moveToFirst();
+        if (!cursor.moveToFirst())
+            return null;
 
         Card c = new Card(cursor.getString(cursor.getColumnIndex(dbHelper.columnFront)), cursor.getString(cursor.getColumnIndex(dbHelper.columnBack)), 0, 0);
         //Card c = new Card(cursor.getString(1), cursor.getString(2), 0, 0);

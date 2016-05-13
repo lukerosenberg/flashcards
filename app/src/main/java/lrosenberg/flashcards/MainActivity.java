@@ -22,14 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
-import org.w3c.dom.Text;
 
 import java.sql.SQLException;
 
@@ -55,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     //ABOVE HERE
 
     @Override
-    protected  void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         try {
@@ -174,16 +167,19 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.fragment_container, helpFragment).commit();
             return true;
         }
-        else if (id == R.id.reset){
+
+
+        if (id == R.id.reset_count) {
             numCorrect = 0;
             numIncorrect = 0;
-            //reviewFragment = ReviewFragment.newInstance();
             final FragmentManager fm = getSupportFragmentManager();
             final FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment_container, reviewFragment)
-                    .commit();
+                    .addToBackStack(null).commit();
             return true;
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 
