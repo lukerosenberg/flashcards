@@ -41,9 +41,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="No flashcards yet."
         android:id="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/deleteButton"
+        android:layout_alignParentStart="true"
         android:layout_alignBottom="@+id/flashcard"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="144dp" />
+        android:gravity="center"/>
 
     <ImageButton
         android:layout_width="wrap_content"
